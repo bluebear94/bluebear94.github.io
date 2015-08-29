@@ -10,6 +10,8 @@ body {
 	border-right-style: groove;
 	border-width: 10px;
 	border-color: #336633;
+	line-height: 1.25;
+	font-size: 16;
 }
 
 a {
@@ -34,4 +36,9 @@ h1 {
 pre {
 	font-family: "VL Gothic", "DejaVu Sans Mono", "Consolas", monospace;
 	color: #660033;
+}
+
+li {
+	padding-top: 0.4em;
+	padding-bottom: 0.3em;
 }
