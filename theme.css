@@ -15,6 +15,10 @@ body {
 	font-size: 16;
 }
 
+table.phonology {
+	font-size: 14;
+}
+
 a {
 	color: #339900;
 	text-decoration: none;
