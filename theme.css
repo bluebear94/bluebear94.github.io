@@ -4,13 +4,14 @@ body {
 	font-family: "Gentium Plus", "Gentium Basic", "Gentium";
 	background-color: #ccffcc;
 	color: #003300;
-	padding: 50px 10%;
-	max-width: 600px;
-	margin: auto;
+	height: 100%;
 	border-left-style: groove;
 	border-right-style: groove;
 	border-width: 10px;
 	border-color: #336633;
+	padding: 50px 10%;
+	max-width: 600px;
+	margin: auto;
 	line-height: 1.25;
 	font-size: 16;
 }
