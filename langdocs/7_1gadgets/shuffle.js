@@ -39,7 +39,8 @@ function parseWord(word) {
       boundary = true;
     }
     var hasCaret = (i < word.length - 2 && word[i + 1] == '^');
-    var j = hasCaret ? 3 : 1;
+    var hasUnderscore = (i < word.length - 1 && word[i] == '_');
+    var j = hasCaret ? 3 : hasUnderscore ? 2 : 1;
     var letter = word.substr(i, j);
     i += j;
     var openness = dcByLetter[letter];
