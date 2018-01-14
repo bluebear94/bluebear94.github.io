@@ -14,14 +14,15 @@ var dcByLetter = {
   "g^j": 2, "j^l": 2, "y": 2, "w": 2, "5": 2,
   "6": 2,
   "q": 1, "r": 1, "l": 1, "m": 1, "n": 1,
-  "n^y": 1, "n^g": 1, "7": 1,
+  "n^y": 1, "n^g": 1, "7": 1, "9^7": 1,
   "s": 0, "s^w": 0, "x^l": 0, "v^h": 0,
   "z^h": 0, "v^j": 0, "1": 0, "2": 0,
   "f": -1, "x": -1, "k^x": -1, "c": -1, "8": -1,
+  "9^8": -1,
   "s^f": -2, "f^h": -2, "s^h": -2, "f^x": -2, "p": -2,
   "b": -2, "t": -2, "d": -2, "t^y": -2, "d^y": -2,
   "k": -2, "g": -2, "t^s": -2, "t^x": -2, ".": -2,
-  "3": -2, "4": -2,
+  "3": -2, "4": -2, "_4": -2,
 }
 
 // Parses a word into a list of entries.
@@ -76,6 +77,8 @@ function htmlifyWord(entries) {
     if (entry.letter.length == 3) {
       res += entry.letter[0] + "<sup>" +
         entry.letter[2] + "</sup>";
+    } else if (entry.letter.length == 2) {
+      res += "<sub>" + entry.letter[1] + "</sub>";
     } else res += entry.letter;
   }
   return res;
