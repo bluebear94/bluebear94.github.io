@@ -51,7 +51,7 @@ h1 {
 	color: #006666;
 }
 
-pre {
+pre, code {
 	font-family: "VL Gothic", "Liberation Mono", "DejaVu Sans Mono", "Consolas", monospace;
 	color: #660033;
 	font-size: 100%;

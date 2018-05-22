@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html> <head> <meta charset="UTF-8">
+	<title> foo = foldl $ flip ($) </title>
+	<link rel="stylesheet" type="text/css" href="theme.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+</head>
+<body>
+  <script src="common.js" async></script>
+	<a href="index.html" class="back"> Back to the front page </a>
+  <h1> foo = foldl $ flip ($) </h1>
+  <p> This piece of Haskell code lies on my homepage. I no longer program in Haskell, but I can still figure out what this does (though I did have to reïnstall ghc to check). </p>
+  <p> <code>foo = foldl $ flip ($)</code> is just an obtuse way of saying <code>foo = foldl (flip ($))</code>. Now <code>foldl</code>'s signature is: </p>
+  <pre>foldl :: Foldable t => (b -> a -> b) -> b -> t a -> b</pre>
+  <p> Or, more legibly, it takes: </p>
+  <ul>
+    <li> A function that takes two arguments of type <code>b</code> and <code>a</code>, then returns something of type <code>b</code>. </li>
+    <li> A &quot;seed value&quot; of type <code>b</code>. </li>
+    <li> A foldable thing <code>t</code> of <code>a</code>s. This can be, for instance, a list. </li>
+  </ul>
+  <p> Now typing </p>
+  <pre>foldl (+) 44 [5, 8, 3, 5]</pre>
+  <p> into <code>ghci</code> outputs <code>65</code> – that is, ((((44 + 5) + 8) + 3) + 5). </p>
+  <p> But in the code example on my homepage, <code>foldl</code> gets passed in too few arguments. That's perfectly legal, since technically speaking, all functions take only one parameter. In our case, the other two arguments to <code>foldl</code> can be passed into <code>foo</code> to get the value we want. Let's rewrite the definition to include explicit parameters: </p>
+  <pre>foo seed entries = foldl (flip ($)) seed entries</pre>
+  <p> And speaking of which, let's rewrite the first argument passed to <code>foldl</code>. <code>$</code> is an operator such that <code>f $ x = f x</code> (and <code>($)</code> is just Haskell's way of expressing that operator as a function). <code>flip</code>'s signature is <code>(a -> b -> c) -> b -> a -> c</code>, and you can think of it as taking three parameters, but here it's more useful to think of it as taking a function with two parameters and returning another function that takes in those parameters in the other order. </p>
+  <pre>foo seed entries = foldl (\x f -> f x) seed entries</pre>
+  <p> Here, we can see that if <code>seed</code> has a type of <code>b</code>, then <code>(\x f -> f x)</code> takes in two arguments of <code>b</code> and <code>b -> c</code>, respectively, and spits out a <code>c</code>. Because of the signature of <code>foldl</code>, <code>b</code> and <code>c</code> have to refer to the same type. Then <code>a</code> in the signature shown earlier is <code>b -> b</code>. <code>seed</code> is also a <code>b</code>, and <code>entries</code> is some foldable thing (let's go with lists for now) of functions <code>b -> b</code>. You can verify this in <code>ghci</code>. </p>
+  <p> So what does this code do? The function returns the result from applying each element of <code>entries</code> successively on <code>seed</code>, so, for instance, <code>foo x [f1, f2, f3] = f3 (f2 (f1 x))</code>. For a concrete example: </p>
+  <pre>foo 5.2 [\a -> sqrt a, \a -> 35 + a, \a -> cos (2.6 * a)]
+    = (\a -> cos (2.6 * a)) ((\a -> 35 + a) ((\a -> sqrt a) 5.2))
+    = (\a -> cos (2.6 * a)) ((\a -> 35 + a) (sqrt 5.2))
+    = (\a -> cos (2.6 * a)) (35 + (sqrt 5.2))
+    = cos (2.6 * (35 + (sqrt 5.2)))
+    = -0.8958481640418573</pre>
+  <p> I hate Haskell. </p>
+</body> </html>
