@@ -66,3 +66,11 @@ hacm, .hacm {
 sc {
 	font-variant: small-caps;
 }
+
+.hacmtoggle {
+	position: fixed;
+	top: 20px;
+	left: 20px;
+	padding: 30px;
+	background: #eeffee;
+}
