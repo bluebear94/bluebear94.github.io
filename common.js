@@ -9,8 +9,13 @@ Come join the AGC Discord below!
 `;
 
 const hacmboxHTML = `
-<input type="checkbox" id="hacmtoggle" onchange="toggleHacm()" checked />
-<label for="hacmtoggle">Use hacm font</label>
+<span class="tall">
+  <input type="checkbox" id="hacmtoggle" onchange="toggleHacm(false)" checked />
+  <label for="hacmtoggle" class="hideonlandscape">Use hacm font</label>
+</span>
+<span class="short">
+  <a onclick="toggleHacm(true)" class="hacm">Tt</a>
+</span>
 `;
 
 console.info(message, 'font-family: "Liberation Mono", "DejaVu Sans Mono", monospace; color: #AA2000;');
@@ -34,7 +39,7 @@ window.onload = function() {
   var hacmbox = document.createElement("div");
   hacmbox.setAttribute("class", "hacmtoggle");
   hacmbox.innerHTML = hacmboxHTML;
-  body.appendChild(hacmbox);
+  body.insertBefore(hacmbox, body.firstChild);
   hacmToggleRule = getCSSRule("hacm, .hacm");
   if (hacmToggleRule === undefined) {
     console.error("Hacm toggle rule not found.");
@@ -42,12 +47,14 @@ window.onload = function() {
   console.log("hacmbox done");
 };
 
-function toggleHacm() {
+function toggleHacm(alwaysInvert) {
   var hacmbox = document.getElementById("hacmtoggle");
   var useHacm = hacmbox.checked;
+  if (alwaysInvert) useHacm = !useHacm;
   if (useHacm) {
     hacmToggleRule.style.setProperty("font-family", '"kardinal", sans-serif');
   } else {
     hacmToggleRule.style.setProperty("font-family", 'sans-serif');
   }
+  hacmbox.checked = useHacm;
 }
