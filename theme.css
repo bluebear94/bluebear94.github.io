@@ -67,7 +67,7 @@ li {
 	padding-bottom: 0.3em;
 }
 
-hacm, .hacm {
+hacm > *, .hacm > *, hacm, .hacm {
 	font-family: "kardinal", sans-serif;
 }
 

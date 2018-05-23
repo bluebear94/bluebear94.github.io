@@ -107,7 +107,7 @@ function toggleImagePath() {
 }
 
 function windowOnLoadCommon() {
-  hacmToggleRule = getCSSRule("hacm, .hacm");
+  hacmToggleRule = getCSSRule("hacm > *, .hacm > *, hacm, .hacm");
   if (hacmToggleRule === undefined) {
     console.error("Hacm toggle rule not found.");
   }
