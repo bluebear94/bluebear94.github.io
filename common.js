@@ -26,6 +26,8 @@ var hacmToggleRule;
 var hacmMenuToggle;
 var hacmbox;
 var hacmNameBox;
+var imagePathBox;
+var defaultImage = "/image/toaster.png";
 var data = window.localStorage;
 var optpage = location.pathname.endsWith("options.html");
 
@@ -77,7 +79,31 @@ function setHacmFont(name) {
 }
 
 function toggleHacmFont() {
-  setHacmFont(hacmNameBox.value);
+  var fontName = hacmNameBox.value;
+  if (fontName === "") fontName = "kardinal";
+  setHacmFont(fontName);
+}
+
+function setBackgroundAnimation(name) {
+  console.log(name);
+  data.setItem("animation", name);
+}
+
+function toggleBackgroundAnimationRadio(value) {
+  return function() {
+    setBackgroundAnimation(value);
+  }
+}
+
+function setImagePath(name) {
+  data.setItem("imagePath", name);
+  if (optpage) imagePathBox.value = name;
+}
+
+function toggleImagePath() {
+  var imagePath = imagePathBox.value;
+  if (imagePath === "") imagePath = defaultImage;
+  setImagePath(imagePath);
 }
 
 function windowOnLoadCommon() {
@@ -88,31 +114,44 @@ function windowOnLoadCommon() {
   setHacm(data.getItem("hacm") != "off");
   setHacmMenu(data.getItem("hacmMenu") != "off");
   setHacmFont(data.getItem("hacmFont") || "kardinal");
+  setImagePath(data.getItem("imagePath") || defaultImage)
 }
 
-if (optpage) {
-  window.onload = function() {
-    hacmbox = document.getElementById("hacmtoggle");
-    hacmMenuToggle = document.getElementById("hacmshow");
-    hacmNameBox = document.getElementById("hacmfont");
-    windowOnLoadCommon();
-  };
-} else {
-  window.onload = function() {
-    if (data.getItem("hacmMenu") == "off") return;
-    var body = document.getElementsByTagName("body")[0];
-    var hacmmenu = document.createElement("div");
-    hacmmenu.setAttribute("class", "hacmtoggle");
-    hacmmenu.innerHTML = hacmboxHTML;
-    body.insertBefore(hacmmenu, body.firstChild);
-    hacmbox = document.getElementById("hacmtoggle");
-    windowOnLoadCommon();
-    if (document.title === "404") {
-      var page = location.pathname;
-      var inserts = document.getElementsByClassName("namehere");
-      for (var i = 0; i < inserts.length; ++i) {
-        inserts[i].textContent = page;
-      }
+function initOptPage() {
+  hacmbox = document.getElementById("hacmtoggle");
+  hacmMenuToggle = document.getElementById("hacmshow");
+  hacmNameBox = document.getElementById("hacmfont");
+  imagePathBox = document.getElementById("imgPath");
+  var defaultAnim = data.getItem("animation") || "ants";
+  var animationChoices = document.animselect.animation;
+  for (var i = 0; i < animationChoices.length; ++i) {
+    var rad = animationChoices[i];
+    rad.onclick = toggleBackgroundAnimationRadio(rad.value);
+    if (rad.value == defaultAnim) rad.checked = true;
+  }
+  windowOnLoadCommon();
+};
+
+function initPage() {
+  if (data.getItem("hacmMenu") == "off") return;
+  var body = document.getElementsByTagName("body")[0];
+  var hacmmenu = document.createElement("div");
+  hacmmenu.setAttribute("class", "hacmtoggle");
+  hacmmenu.innerHTML = hacmboxHTML;
+  body.insertBefore(hacmmenu, body.firstChild);
+  hacmbox = document.getElementById("hacmtoggle");
+  windowOnLoadCommon();
+  if (document.title === "404") {
+    var page = location.pathname;
+    var inserts = document.getElementsByClassName("namehere");
+    for (var i = 0; i < inserts.length; ++i) {
+      inserts[i].textContent = page;
     }
-  };
+  }
+};
+
+if (optpage) {
+  window.onload = initOptPage;
+} else {
+  window.onload = initPage;
 }

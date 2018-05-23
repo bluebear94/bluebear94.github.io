@@ -8,7 +8,7 @@
   <script src="common.js" async></script>
 	<a href="index.html" class="back"> Back to the front page </a>
   <h1> Options for bluebear94.github.io </h1>
-  <div class="form">
+  <form name="hacmsetup">
     <input type="checkbox" id="hacmtoggle" onchange="toggleHacm(false)" checked />
     <label for="hacmtoggle">Use hacm font</label>
     <p class="hacm"> im an ku kon arka, ti in sil tu. </p>
@@ -18,5 +18,15 @@
     <label for="hacmfont"> Font to use for hacm (if you have it installed): </label>
     <input id="hacmfont" type="text" class="hacm" onblur="toggleHacmFont()" onchange="toggleHacmFont()" />
     <p> Set this to something else if that suits your fancy. You can even set this to an anjuren font; heck, it doesn't even have to be a hacm font at all! I'm not going to check. </p>
-  </span>
+  </form>
+  <form name="animselect">
+    <p> Background animation: </p>
+    <div>
+      <input type="radio" name="animation" id="animAnts" value="ants" checked />
+      <label for="animAnts">Ants</label> <br />
+      <input type="radio" name="animation" id="animStatic" value="static" />
+      <label for="animStatic">Static image at </label>
+      <input id="imgPath" type="text" onblur="toggleImagePath()" onchange="toggleImagePath()" />
+    </div>
+  </form>
 </body> </html>

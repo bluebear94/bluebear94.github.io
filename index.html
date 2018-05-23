@@ -2,37 +2,57 @@
 <html> <head> <meta charset="UTF-8">
 	<title> Front page </title>
 	<link rel="stylesheet" type="text/css" href="theme.css">
+	<link rel="stylesheet" type="text/css" href="theme-index.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<script src="common.js"></script>
+	<script src="ants.js"></script>
 </head>
-<body>
-	<script src="common.js" async></script>
-	<h1> Whalecum to bb94's page </h1>
-	<p> Hello! I'm Uruwi (or kozet), and I program things as well as play games
-		and create languages. (My GitHub account was made when my handle was
-		blue_bear_94, so that's the reason my handle here is bluebear94 [without
-		the underscores]). </p>
-	<h2> My profiles </h2>
-	<p>
-		<a href="https://github.com/bluebear94">GitHub</a> |
-		<a href="https://twitter.com/_Uruwi">Twitter</a> |
-		<a href="https://plus.google.com/+%E3%82%A6%E3%83%AB%E3%83%B0">Google+</a> |
-		<a href="https://www.youtube.com/channel/UCGKwZGiP57GepW6TbNxNzGA">YouTube</a> |
-		<a href="https://www.reddit.com/user/Fluffy8x/">Reddit</a>
-	</p>
-	<h2> Links </h2>
-	<ul>
-		<li> <a href="options.html"> Set options for this site </a> </li>
-		<li> <a href="sagume.html"> Sagume portal </a> </li>
-		<li> <a href="th15st.html"> LoLK strategy guide </a> </li>
-		<li> <a href="pbs.html"> My personal score records </a> </li>
-		<li> <a href="w101.html"> Wizard101 rants </a> </li>
-		<li> <a href="commission.html"> Commission info </a> </li>
-		<li> <a href="orthofail.html"> Read this before you create an orthography </a> </li>
-		<li> <a href="clicker101/index.html"> Clicker101 – a game </a> </li>
-		<li> <a href="langdocs/index.html"> My conlangs </a> </li>
-		<li> <a href="langdocs/mp/index.html"> Learn Mođëp'öso </a> </li>
-		<li> <a href="arkastuff/index.html"> Stuff about Arka </a> </li>
-		<li> <a href="estel/index.html"> My translations </a> </li>
-	</ul>
+<body onload="initPage(); startAnim();">
+	<canvas id="ants"></canvas>
+	<div class="intro">
+		<h1> Welcome to bb94's page </h1>
+		<p> Hello! I'm Uruwi (or kozet), and I program things as well as play games
+			and create languages. (My GitHub account was made when my handle was
+			blue_bear_94, so that's the reason my handle here is bluebear94 [without
+			the underscores]). </p>
+	</div>
+	<div class="paneholder">
+		<div class="pane" id="pane1">
+			<div class="pane-content pcleft">
+				<div class="pane-title hacm">akrels</div>
+				<a href="options.html"> Set options for this site </a>
+				<a href="https://github.com/bluebear94?tab=repositories"> Everything I have public on GitHub, ever </a>
+			</div>
+		</div>
+		<div class="pane" id="pane2">
+			<div class="pane-content pcright">
+				<div class="pane-title hacm">levian</div>
+				<a href="langdocs/index.html"> My conlangs </a>
+				<a href="orthofail.html"> Read this before you create an orthography </a>
+				<a href="langdocs/mp/index.html"> Learn Mođëp'öso </a>
+				<a href="arkastuff/index.html"> Stuff about Arka </a>
+				<a href="estel/index.html"> My translations </a>
+			</div>
+		</div>
+		<div class="pane" id="pane3">
+			<div class="pane-content pcbottom pcleft">
+				<div class="pane-title hacm">liva</div>
+				<a href="sagume.html"> Sagume portal </a>
+				<a href="th15st.html"> LoLK strategy guide </a>
+				<a href="pbs.html"> My personal score records </a>
+				<a href="clicker101/index.html"> Clicker101 – a game </a>
+			</div>
+		</div>
+		<div class="pane" id="pane4">
+			<div class="pane-content pcright pcbottom">
+				<div class="pane-title hacm">lexn</div>
+				<a href="https://github.com/bluebear94">GitHub</a>
+				<a href="https://twitter.com/_Uruwi">Twitter</a>
+				<a href="https://plus.google.com/+%E3%82%A6%E3%83%AB%E3%83%B0">Google+</a>
+				<a href="https://www.youtube.com/channel/UCGKwZGiP57GepW6TbNxNzGA">YouTube</a>
+				<a href="https://www.reddit.com/user/Fluffy8x/">Reddit</a>
+			</div>
+		</div>
+	</div>
 	<code>foo = foldl $ flip ($)</code><sup><i><a href="foo.html">???</a></i></sup>
 </body> </html>
