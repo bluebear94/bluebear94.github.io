@@ -54,7 +54,7 @@ function updateAnts() {
   var vp = getViewportDimensions();
   if (w < vp[0] || h < vp[1]) {
     canvas.width = w = vp[0];
-    canvas.height = w = vp[1];
+    canvas.height = h = vp[1];
     createAnts();
   }
   if (w == 0 || h == 0) return;
